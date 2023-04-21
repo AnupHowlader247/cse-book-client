@@ -11,7 +11,7 @@ const Router = createBrowserRouter([
             element: <Login></Login>
         },
         {
-            path: 'register',
+            path: '/register',
             element: <Register></Register>
         },
         {
@@ -20,9 +20,17 @@ const Router = createBrowserRouter([
             errorElement: <ErrorPage></ErrorPage> ,
             children: [
                 {
-                    path: '/home',
-                    element:  <Home></Home>,
-                }
+                    path: '/profile',
+                    element: <Register></Register>
+                },
+                {
+                    path: '/notifications',
+                    element: <Register></Register>
+                },
+                {
+                    path: '/messages',
+                    element: <Register></Register>
+                },
             ]
         },
 ]);
