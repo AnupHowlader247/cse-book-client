@@ -6,6 +6,7 @@ import Login from '../Page/Login/Login';
 import Register from "../Page/Register/Register";
 import ErrorPage from "../Page/ErrorPage/ErrorPage";
 import HomeContainer from "../components/HomeContainer/HomeContainer";
+import PrivateRoute from "./PrivateRoute";
 const Router = createBrowserRouter([
         {
             path: '/',
@@ -17,7 +18,7 @@ const Router = createBrowserRouter([
         },
         {
             path: '/home',
-            element: <Home></Home>,
+            element: <PrivateRoute> <Home></Home> </PrivateRoute>,
             errorElement: <ErrorPage></ErrorPage> ,
             children: [
                 {

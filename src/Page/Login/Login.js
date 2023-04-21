@@ -1,8 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import toast from 'react-hot-toast';
+import { useContext } from "react";
+import { UserInfo } from "../../UserContext/AuthProvider";
 
 function Login() {
   const navigate = useNavigate();
+  const {setUser} = useContext(UserInfo)
   const notify = () => toast.error('Something wrong!');
 
   const handleForm = (e) => {
@@ -25,6 +28,7 @@ function Login() {
       .then((res) => res.json())
       .then((data) => {
         if(data.success){
+          setUser(data.data)
         navigate('/home')
         }
         else{
