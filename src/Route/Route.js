@@ -5,6 +5,7 @@ import Home from "../Page/Home/Home";
 import Login from '../Page/Login/Login';
 import Register from "../Page/Register/Register";
 import ErrorPage from "../Page/ErrorPage/ErrorPage";
+import HomeContainer from "../components/HomeContainer/HomeContainer";
 const Router = createBrowserRouter([
         {
             path: '/',
@@ -20,15 +21,19 @@ const Router = createBrowserRouter([
             errorElement: <ErrorPage></ErrorPage> ,
             children: [
                 {
-                    path: '/profile',
+                    path: '/home',
+                    element: <HomeContainer></HomeContainer>
+                },
+                {
+                    path: '/home/profile',
                     element: <Register></Register>
                 },
                 {
-                    path: '/notifications',
+                    path: '/home/notifications',
                     element: <Register></Register>
                 },
                 {
-                    path: '/messages',
+                    path: '/home/messages',
                     element: <Register></Register>
                 },
             ]
