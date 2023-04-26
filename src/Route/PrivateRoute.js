@@ -6,7 +6,6 @@ import { UserInfo } from "../UserContext/AuthProvider";
 const PrivateRoute = ({ children }) => {
   const { user } = useContext(UserInfo);
   const location = useLocation();
-  console.log(user)
   
   return (
     <div>

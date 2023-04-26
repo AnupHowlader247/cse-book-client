@@ -1,8 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
+import { UserInfo } from "../../UserContext/AuthProvider";
+import { useContext } from "react";
 
 function Register() {
   const navigate = useNavigate();
-
+  const {createUser} = useContext(UserInfo)
   const handleForm = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
@@ -16,18 +18,21 @@ function Register() {
       email,
       password
     }
+    createUser(email,password)
+    .then(
+      fetch('http://localhost:5000/storeUser', {
+        method: 'POST',
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(info),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          navigate('/home')
+        })
+    )
 
-    fetch('http://localhost:5000/storeUser', {
-      method: 'POST',
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(info),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        navigate('/home')
-      });
   }
 
 return (

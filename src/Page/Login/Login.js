@@ -1,11 +1,11 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import toast from 'react-hot-toast';
 import { useContext } from "react";
 import { UserInfo } from "../../UserContext/AuthProvider";
 
 function Login() {
   const navigate = useNavigate();
-  const {setUser} = useContext(UserInfo)
+  const {LogIn, user} = useContext(UserInfo)
   const notify = () => toast.error('Something wrong!');
 
   const handleForm = (e) => {
@@ -18,23 +18,16 @@ function Login() {
       password
     }
 
-    fetch('http://localhost:5000/loginUser', {
-      method: 'POST',
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(info),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if(data.success){
-          setUser(data.data)
-        navigate('/home')
-        }
-        else{
-          notify();
-        }
-      });
+    LogIn(email,password)
+    // .then(
+    //     navigate('/home')
+    // )
+    // .catch(
+    //   notify()
+    // )
+  }
+  if (user) {
+    return <Navigate to="/home" replace={true} />;
   }
   return (
     <div>

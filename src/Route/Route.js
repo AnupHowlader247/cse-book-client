@@ -7,6 +7,9 @@ import Register from "../Page/Register/Register";
 import ErrorPage from "../Page/ErrorPage/ErrorPage";
 import HomeContainer from "../components/HomeContainer/HomeContainer";
 import PrivateRoute from "./PrivateRoute";
+import Messages from "../Page/Messages/Messages";
+import IndividualChat from "../Page/IndividualChat/IndividualChat";
+import SearchResult from "../Page/SearchResult/SearchResult";
 const Router = createBrowserRouter([
         {
             path: '/',
@@ -35,7 +38,15 @@ const Router = createBrowserRouter([
                 },
                 {
                     path: '/home/messages',
-                    element: <Register></Register>
+                    element: <Messages></Messages>
+                },
+                {
+                    path: '/home/individual',
+                    element: <IndividualChat></IndividualChat>
+                },
+                {
+                    path: '/home/searchResult',
+                    element: <SearchResult></SearchResult>
                 },
             ]
         },

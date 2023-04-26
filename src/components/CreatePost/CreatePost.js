@@ -1,18 +1,21 @@
+import { useContext } from 'react';
 import toast from 'react-hot-toast';
+import { UserInfo } from '../../UserContext/AuthProvider';
 
 function CreatePost() {
   const notify = () => toast.success('Post success!');
-
+  const {user} = useContext(UserInfo)
+ 
   const handleForm = (e) => {
     e.preventDefault();
     const topic = e.target.topic.value;
     const text = e.target.text.value;
-    const name = e.target.name.value;
+    const email = user.email;
 
     const info = {
       topic,
       text,
-      name
+      email
     }
 
     fetch('http://localhost:5000/post', {
