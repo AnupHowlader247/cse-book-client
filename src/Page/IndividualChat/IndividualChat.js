@@ -45,7 +45,7 @@ function IndividualChat() {
         {
             data.map((info,index)=>{
                 return <div key={index}>
-              <p>{info.sender}</p>
+              <p>{info.senderName}</p>
               <p>{info.message}</p>
                 </div>
             })

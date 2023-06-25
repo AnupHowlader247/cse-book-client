@@ -20,11 +20,11 @@ function Messages() {
           <div className="border" key={index}>
             {user.email === info.to ? (
               <Link to={"/home/individual"} state={info}>
-                {info.sender}
+                {info.senderName}
               </Link>
             ) : (
               <Link to={"/home/individual"} state={info}>
-                {info.to}
+                {info.toName}
               </Link>
             )}
           </div>

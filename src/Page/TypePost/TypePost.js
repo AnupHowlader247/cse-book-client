@@ -1,42 +1,26 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserInfo } from "../../UserContext/AuthProvider";
-import { useNavigate } from "react-router-dom";
-import Comment from "../Shared/Comment/Comment";
+import { useLocation, useNavigate } from "react-router-dom";
+import Comment from "../../components/Shared/Comment/Comment";
 
-const PostDisplay = () => {
+const TypePost = () => {
+    const state = useLocation()
   const [data, setData] = useState([]);
   const [email, setEmail] = useState("");
   const { user } = useContext(UserInfo);
   useEffect(() => {
-    fetch("http://localhost:5000/allPost")
+    fetch(`http://localhost:5000/typePost/${state?.state?.batch}`)
       .then((res) => res.json())
       .then((data) => {
         setData(data);
       });
   }, []);
 
+  
+
   const [inputValue, setInputValue] = useState("");
-  const navigate = useNavigate();
-  const handleMessage = (event) => {
-    if (event.key === "Enter") {
-      const info = {
-        to: email,
-        sender: user.email,
-        message: inputValue,
-      };
-      fetch("http://localhost:5000/storeMessages", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(info),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          navigate("/home/messages");
-        });
-    }
-  };
+ 
+ 
   return (
     <>
       {data?.map((post, index) => {
@@ -62,13 +46,10 @@ const PostDisplay = () => {
 
                 <input
                   type="checkbox"
-                  id={email?"my-modal-3" : undefined}
+                  id="my-modal-3"
                   className="modal-toggle"
                 />
-
-
-
-               <div className="modal">
+                <div className="modal">
                   <div className="modal-box relative">
                     <label
                       htmlFor="my-modal-3"
@@ -80,15 +61,10 @@ const PostDisplay = () => {
                       className="textarea textarea-success w-1/2"
                       placeholder="Message"
                       onChange={(event) => setInputValue(event.target.value)}
-                      onKeyDown={handleMessage}
+                    
                     ></textarea>
                   </div>
                 </div>
-
-
-
-
-
               </div>
             </div>
             <p className="font-semibold">{post.text}</p>
@@ -103,4 +79,11 @@ const PostDisplay = () => {
   );
 };
 
-export default PostDisplay;
+export default TypePost;
+
+
+
+
+
+
+  

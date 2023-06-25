@@ -9,6 +9,10 @@ import Messages from "../Page/Messages/Messages";
 import IndividualChat from "../Page/IndividualChat/IndividualChat";
 import SearchResult from "../Page/SearchResult/SearchResult";
 import OwnPost from "../Page/OwnPost/OwnPost";
+import Type from "../Page/Type/Type";
+import Batch from "../Page/Batch/Batch";
+import BatchPost from "../Page/BatchPost/BatchPost";
+import TypePost from "../Page/TypePost/TypePost";
 const Router = createBrowserRouter([
   {
     path: "/",
@@ -37,8 +41,20 @@ const Router = createBrowserRouter([
         element: <OwnPost></OwnPost>,
       },
       {
-        path: "/home/notifications",
-        element: <Register></Register>,
+        path: "/home/batch",
+        element: <Batch></Batch>,
+      },
+      {
+        path: "/home/batchPost",
+        element: <BatchPost></BatchPost>,
+      },
+      {
+        path: "/home/type",
+        element: <Type></Type>,
+      },
+      {
+        path: "/home/typePost",
+        element: <TypePost></TypePost>,
       },
       {
         path: "/home/messages",

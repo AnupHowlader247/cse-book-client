@@ -1,15 +1,20 @@
 import { Link, useNavigate } from "react-router-dom";
 import { UserInfo } from "../../UserContext/AuthProvider";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 function Register() {
   const navigate = useNavigate();
   const { createUser } = useContext(UserInfo);
   let photoUrl;
+  const [batch10,setBatch10] = useState(false)  
+  const [batch11,setBatch11] = useState(false)  
+  const [batch12,setBatch12] = useState(false)  
+  const [batch13,setBatch13] = useState(false)  
+
   const handleForm = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
-    const id = e.target.id.value;
+    const batch = batch10 && 'Batch-10'|| batch11 && 'Batch-11' || batch12 && 'Batch-12' || batch13 && 'Batch-13';
     const email = e.target.email.value;
     const password = e.target.password.value;
     const img = e.target.photo.files[0];
@@ -32,7 +37,7 @@ function Register() {
         createUser(email, password).then((userCredential) => {
           const info = {
             name,
-            id,
+            batch,
             email,
             password,
             img: photoUrl,
@@ -51,6 +56,31 @@ function Register() {
       });
   };
 
+  const handleBatch10 = ()=> {
+    setBatch10(true)
+    setBatch11(false)
+    setBatch12(false)
+    setBatch13(false)
+  }
+  const handleBatch11 = ()=> {
+    setBatch10(false)
+    setBatch11(true)
+    setBatch12(false)
+    setBatch13(false)
+  }
+  const handleBatch12 = ()=> {
+    setBatch10(false)
+    setBatch11(false)
+    setBatch12(true)
+    setBatch13(false)
+  }
+  const handleBatch13 = ()=> {
+    setBatch10(false)
+    setBatch11(false)
+    setBatch12(false)
+    setBatch13(true)
+  }
+  
   return (
     <div>
       <div className="hero min-h-screen bg-base-200">
@@ -75,16 +105,18 @@ function Register() {
                   />
                 </div>
                 <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Id</span>
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Id"
-                    className="input input-bordered"
-                    name="id"
-                    required
-                  />
+                  <div className="form-control">
+                    <label className="label cursor-pointer">
+                      <span className="label-text">Batch-10</span>
+                      <input type="checkbox" checked={batch10 && !batch11 && !batch12 && !batch13 ? 'checked' : undefined} className="checkbox" onClick={handleBatch10}/>
+                      <span className="label-text">Batch-11</span>
+                      <input type="checkbox" checked={!batch10 && batch11 && !batch12 && !batch13 ? 'checked' : undefined}  className="checkbox" onClick={handleBatch11}/>
+                      <span className="label-text">Batch-12</span>
+                      <input type="checkbox" checked={!batch10 && !batch11 && batch12 && !batch13 ? 'checked' : undefined}  className="checkbox" onClick={handleBatch12}/>
+                      <span className="label-text">Batch-13</span>
+                      <input type="checkbox" checked={!batch10 && !batch11 && !batch12 && batch13 ? 'checked' : undefined}  className="checkbox" onClick={handleBatch13}/>
+                    </label>
+                  </div>
                 </div>
                 <div className="form-control">
                   <label className="label">

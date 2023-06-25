@@ -41,10 +41,16 @@ function Nav() {
             Profile
           </Link>
           <Link
-            to={"/home/notifications"}
+            to={"/home/type"}
             className="btn btn-ghost normal-case text-xl"
           >
-            Notifications
+            Type
+          </Link>
+          <Link
+            to={"/home/batch"}
+            className="btn btn-ghost normal-case text-xl"
+          >
+            Batch
           </Link>
           <Link
             to={"/home/messages"}
