@@ -49,9 +49,9 @@ const PostDisplay = () => {
               <div className="name flex items-center">
                 <span className="font-semibold">
                   {post.name}
-                  {post.email != user.email ? (
+                  {post.email !== user.email ? (
                     <label
-                      htmlFor="my-modal-3"
+                      htmlFor={post._id}
                       className="btn"
                       onClick={() => setEmail(post.email)}
                     >
@@ -60,18 +60,12 @@ const PostDisplay = () => {
                   ) : undefined}
                 </span>
 
-                <input
-                  type="checkbox"
-                  id={email?"my-modal-3" : undefined}
-                  className="modal-toggle"
-                />
+                <input type="checkbox" id={post._id} className="modal-toggle" />
 
-
-
-               <div className="modal">
+                <div className="modal">
                   <div className="modal-box relative">
                     <label
-                      htmlFor="my-modal-3"
+                      htmlFor={post._id}
                       className="btn btn-sm btn-circle absolute right-2 top-2"
                     >
                       ✕
@@ -84,11 +78,6 @@ const PostDisplay = () => {
                     ></textarea>
                   </div>
                 </div>
-
-
-
-
-
               </div>
             </div>
             <p className="font-semibold">{post.text}</p>
